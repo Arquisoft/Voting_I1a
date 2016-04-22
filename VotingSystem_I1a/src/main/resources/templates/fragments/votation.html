@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css"
+          th:href="@{/css/voting.css}"
+          rel="stylesheet" />
+</head>
+
+<body>
+<div class="header" th:fragment="cabecera">
+    <h1>Voting System</h1>
+</div>
+<form id="votation" action="#" th:action="@{/saveVote}"
+		th:object="${votation}" method="post">
+
+		<label for="options">Options:</label> <select>
+			<!-- Iterate on ${options} -->
+			<option>Candidate1</option>
+			<option>Candidate2</option>
+			<option>Candidate3</option>
+			<option>Candidate4</option>
+			<option>White Vote</option>
+			<option>Null</option>
+		</select>
+		
+		<button type="submit">VOTE</button>
+
+</form>
+
+</body>
+</html>
+
+
+	
+	

@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Your information</title>
+    </head>
+    <body>
+        <section>
+            Your email: <span th:text="${voter.email}"></span>
+        </section>
+
+        <section>
+            <a th:href="${'/update_password/' + voter.id}">Change your password</a>
+        </section>
+    </body>
+</html>

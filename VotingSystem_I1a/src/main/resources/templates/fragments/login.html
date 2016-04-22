@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css"
+          th:href="@{/css/voting.css}"
+          rel="stylesheet" />
+</head>
+
+<body>
+	<div class="login-card">
+    		<h1>Login - Votation system</h1>
+    		<br></br>
+    		<h2>Log-in</h2>
+  			<form>
+    			<input type="text" placeholder="User" th:field="*{email}"/>
+    			<input type="password" placeholder="Password" th:field="*{password}"/>
+    			
+				<button type="submit">VOTE</button>
+  			</form>
+  		</div>
+  </body>
+</html>
