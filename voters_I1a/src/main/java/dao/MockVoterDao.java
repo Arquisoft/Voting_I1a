@@ -18,11 +18,6 @@ public class MockVoterDao implements VoterDao {
     }
     
     @Override
-    public Voter getByEmailAndPassword(String email, String password) {
-    	return new Voter(1, "12345678A", "John", email, "abcd1234", "12345");
-    }
-
-    @Override
     public Voter getById(long id) {
         return new Voter(id, "87654321B", "Smith", "smith@voters.com", "1234abcd", "54321");
     }

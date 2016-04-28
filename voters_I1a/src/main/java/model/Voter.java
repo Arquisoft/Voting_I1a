@@ -2,18 +2,26 @@ package model;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.persistence.*;
+
 /**
  * Represents a voter
  */
+@Entity
 public class Voter {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String nif;
     private String email;
     private String name;
+
+    @Transient
     private String password;
 
+    @Column(name = "password")
     private String hashedPassword;
 
     private String pollingStationCode;

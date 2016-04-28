@@ -1,21 +1,26 @@
 package controller;
 
 import dao.VoterDao;
+import dao.jpa.VoterRepository;
+import dao.jpa.VoterRepositoryDao;
 import dto.VoterInfo;
 import dto.VoterLogin;
 import dto.VoterPasswordUpdate;
 import model.Voter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.PersistenceServiceImpl;
-import service.ServicesFactory;
 
 /**
  * Controller for the Voter
  */
 @RestController
 public class VoterController {
+
+    @Autowired
+    private VoterRepository repository;
+    private VoterDao dao = new VoterRepositoryDao(repository);
 
     /**
      * Process a request to /voter. Checks that the given password matches a voter, and, if it does, respond with
@@ -27,7 +32,7 @@ public class VoterController {
     		produces = "application/json")
     public ResponseEntity<VoterInfo> voter(@RequestBody VoterLogin voterLogin) {
         // find the voter
-        Voter voter = ServicesFactory.getPersistenceService().getVoterDao().getByEmail(voterLogin.getEmail());
+        Voter voter = dao.getByEmail(voterLogin.getEmail());
 
         // if the voter doesn't exist
         if (voter == null)
@@ -51,8 +56,6 @@ public class VoterController {
 			headers ="Accept=application/json",
     		produces = "application/json")
     public HttpStatus updatePassword(@RequestBody VoterPasswordUpdate passwordUpdate) {
-        VoterDao dao = ServicesFactory.getPersistenceService().getVoterDao();
-
         Voter voter = dao.getByEmail(passwordUpdate.getEmail());
 
         if (voter == null)
