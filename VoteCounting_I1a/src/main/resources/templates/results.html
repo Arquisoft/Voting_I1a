@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script th:src="@{/scripts/results.js}"></script>
+    <title>Counting results</title>
+</head>
+<body>
+    <div ng-controller="Results">
+        <table>
+            <thead>
+                <td>Political party</td>
+                <td>Total votes</td>
+            </thead>
+            <tbody>
+                <tr ng-repeat="result in results">
+                    <td>{{result.politicalParty}}</td>
+                    <td>{{result.totalVotes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="piechart" style="width: 600px; height: 400px;"></div>
+</body>
+</html>

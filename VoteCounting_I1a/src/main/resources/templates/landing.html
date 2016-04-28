@@ -2,6 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: head"></head>
 <body>
-<div th:replace="fragments/header :: cabecera"><p>Hello!</p></div>
+<div th:replace="fragments/header :: cabecera">
+    <p>Hello!</p>
+</div>
+
+<section>
+    <h2>Admin</h2>
+    <ul>
+        <li><a href="/seed" id="seed">Seed database</a></li>
+        <li><a href="/count" id="count">Count votes</a></li>
+    </ul>
+</section>
+
+<section>
+    <h2>Public</h2>
+    <ul>
+        <li><a href="/results" id="results">View results</a></li>
+    </ul>
+</section>
 </body>
 </html>
