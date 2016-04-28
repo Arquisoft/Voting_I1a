@@ -10,5 +10,5 @@ Voting System
 # Authors
 
 * Jose Labra
-
+* José Chamadoira
 
