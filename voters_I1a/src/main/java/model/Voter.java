@@ -2,10 +2,7 @@ package model;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Represents a voter
@@ -20,8 +17,11 @@ public class Voter {
     private String nif;
     private String email;
     private String name;
+
+    @Transient
     private String password;
 
+    @Column(name = "password")
     private String hashedPassword;
 
     private String pollingStationCode;

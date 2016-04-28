@@ -11,12 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+
 @Controller
 public class WebController {
 
     @Autowired
     private VoterRepository repository;
-    private VoterDao dao = new VoterRepositoryDao(repository);
+    private VoterDao dao;
+
+    @PostConstruct
+    private void init() {
+        dao = new VoterRepositoryDao(repository);
+    }
 
     /**
      * Serve the get info page
@@ -78,7 +85,7 @@ public class WebController {
         Voter voter = dao.getByEmail(update.getEmail());
 
         if (!voter.checkPassword(update.getOldPassword()))
-            return "error"; // TODO redirect to error page
+            return "error";
 
         voter.setPassword(update.getNewPassword());
         dao.updateVoter(voter);

@@ -11,11 +11,10 @@ import java.util.List;
 @Component
 public class VoterRepositoryDao implements VoterDao {
 
-    @Autowired
     private VoterRepository repository;
 
     public VoterRepositoryDao(VoterRepository repository) {
-//        this.repository = repository;
+        this.repository = repository;
     }
 
     @Override

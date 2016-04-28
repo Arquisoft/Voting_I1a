@@ -56,7 +56,6 @@ public class VoterController {
 			headers ="Accept=application/json",
     		produces = "application/json")
     public HttpStatus updatePassword(@RequestBody VoterPasswordUpdate passwordUpdate) {
-
         Voter voter = dao.getByEmail(passwordUpdate.getEmail());
 
         if (voter == null)
