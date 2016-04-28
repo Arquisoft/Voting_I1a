@@ -26,8 +26,6 @@ public interface VoterDao {
      */
     Voter getByEmail(String email);
     
-    Voter getByEmailAndPassword(String email, String password);
-
     /**
      * Get a voter by his id.
      * @param id ID of the voter

@@ -1,19 +1,22 @@
 package controller;
 
 import dao.VoterDao;
-import dto.VoterInfo;
+import dao.jpa.VoterRepository;
+import dao.jpa.VoterRepositoryDao;
 import dto.VoterLogin;
 import dto.VoterPasswordUpdate;
 import model.Voter;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import service.ServicesFactory;
 
 @Controller
 public class WebController {
+
+    @Autowired
+    private VoterRepository repository;
+    private VoterDao dao = new VoterRepositoryDao(repository);
 
     /**
      * Serve the get info page
@@ -29,8 +32,7 @@ public class WebController {
      */
     @RequestMapping(path="/update_password/{id}", method = RequestMethod.GET)
     public String updatePassword(@PathVariable long id, Model model) {
-        Voter voter = ServicesFactory.getPersistenceService().getVoterDao()
-                .getById(id);
+        Voter voter = dao.getById(id);
 
         VoterPasswordUpdate dto = new VoterPasswordUpdate();
 
@@ -48,7 +50,7 @@ public class WebController {
     @RequestMapping(path = "/voter_info", method = RequestMethod.POST)
     public String info(@ModelAttribute VoterLogin login, Model model) {
         // find the voter
-        Voter voter = ServicesFactory.getPersistenceService().getVoterDao().getByEmail(login.getEmail());
+        Voter voter = dao.getByEmail(login.getEmail());
 
         System.out.println(login.getEmail());
 
@@ -73,8 +75,6 @@ public class WebController {
      */
     @RequestMapping(path="/do_update_password", method = RequestMethod.POST)
     public String doUpdatePassword(@ModelAttribute VoterPasswordUpdate update, Model model) {
-        VoterDao dao = ServicesFactory.getPersistenceService().getVoterDao();
-
         Voter voter = dao.getByEmail(update.getEmail());
 
         if (!voter.checkPassword(update.getOldPassword()))
@@ -83,7 +83,7 @@ public class WebController {
         voter.setPassword(update.getNewPassword());
         dao.updateVoter(voter);
 
-        return "success";   // TODO redirect to success page or go back to info page
+        return "success";
     }
 
 }
