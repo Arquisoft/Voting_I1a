@@ -1,4 +1,4 @@
-package es.uniovi.asw;
+/*package es.uniovi.asw;
 
 import org.junit.runner.RunWith;
 
@@ -13,4 +13,4 @@ import cucumber.api.junit.Cucumber;
 //@IntegrationTest({ "server.port=0" })
 @CucumberOptions(features = "src/test/resources/features")
 public class CucumberTest{
-}
+}*/

@@ -1,4 +1,4 @@
-package test.java.es.uniovi.asw.steps;
+/*package test.java.es.uniovi.asw.steps;
 
 import main.java.es.uniovi.asw.Application;
 import main.java.es.uniovi.asw.access.LogInEV;
@@ -41,4 +41,4 @@ public class OnlyOneVoteSteps {
 	  public void the_voter_is_marked_as_already_voted() throws Throwable {
 	      org.junit.Assert.assertTrue(Database.findVoter("71900605A").isHasVoted());
 	  }
-}
+}*/
