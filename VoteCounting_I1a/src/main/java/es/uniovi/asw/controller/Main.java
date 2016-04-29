@@ -1,8 +1,10 @@
 package es.uniovi.asw.controller;
 
 import es.uniovi.asw.counting.VoteCounter;
+import es.uniovi.asw.model.PoliticalParty;
 import es.uniovi.asw.model.Vote;
 import es.uniovi.asw.model.VoteCount;
+import es.uniovi.asw.persistence.PoliticalPartyRepository;
 import es.uniovi.asw.persistence.VoteCountRepository;
 import es.uniovi.asw.persistence.VoteRepository;
 import es.uniovi.asw.results.Results;
@@ -20,10 +22,9 @@ public class Main {
 
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-    @Autowired
-    VoteRepository voteRepository;
-    @Autowired
-    VoteCountRepository voteCountRepository;
+    @Autowired VoteRepository voteRepository;
+    @Autowired VoteCountRepository voteCountRepository;
+    @Autowired PoliticalPartyRepository politicalPartyRepository;
 
     @RequestMapping("/")
     public ModelAndView landing(Model model) {
@@ -44,14 +45,22 @@ public class Main {
 
     @RequestMapping("/seed")
     public ModelAndView seed() {
-        voteCountRepository.save(new VoteCount("Trump"));
-        voteCountRepository.save(new VoteCount("Wojak"));
-        voteCountRepository.save(new VoteCount("Pepe"));
+        PoliticalParty trump = new PoliticalParty("Trump");
+        PoliticalParty wojak = new PoliticalParty("Wojak");
+        PoliticalParty pepe = new PoliticalParty("Pepe");
 
-        voteRepository.save(new Vote("Trump"));
-        voteRepository.save(new Vote("Wojak"));
-        voteRepository.save(new Vote("Pepe"));
-        voteRepository.save(new Vote("Trump"));
+        trump = politicalPartyRepository.save(trump);
+        wojak = politicalPartyRepository.save(wojak);
+        pepe = politicalPartyRepository.save(pepe);
+
+        voteCountRepository.save(new VoteCount(trump));
+        voteCountRepository.save(new VoteCount(wojak));
+        voteCountRepository.save(new VoteCount(pepe));
+
+        voteRepository.save(new Vote(trump));
+        voteRepository.save(new Vote(wojak));
+        voteRepository.save(new Vote(pepe));
+        voteRepository.save(new Vote(trump));
 
         return new ModelAndView("landing");
     }

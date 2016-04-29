@@ -1,24 +1,28 @@
 package es.uniovi.asw.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class VoteCount {
+public class VoteCount implements Serializable {
 
     @Id
-    private String politicalParty;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @OneToOne
+    private PoliticalParty politicalParty;
 
     private long totalVotes;
 
     protected VoteCount() {}
 
-    public VoteCount(String politicalParty) {
+    public VoteCount(PoliticalParty politicalParty) {
         this.politicalParty = politicalParty;
         this.totalVotes = 0L;
     }
 
-    public String getPoliticalParty() {
+    public PoliticalParty getPoliticalParty() {
         return politicalParty;
     }
 

@@ -8,7 +8,7 @@ function Results($scope, $http) {
 
 function drawChart(results) {
     var asArray = [["Political party", "Total votes"]].concat(results.map(function(row) {
-        return [row.politicalParty, row.totalVotes];
+        return [row.politicalParty.name, row.totalVotes];
     }));
     var data = google.visualization.arrayToDataTable(asArray);
 
