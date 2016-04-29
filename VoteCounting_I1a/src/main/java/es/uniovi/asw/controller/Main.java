@@ -26,6 +26,8 @@ public class Main {
     @Autowired VoteCountRepository voteCountRepository;
     @Autowired PoliticalPartyRepository politicalPartyRepository;
 
+    @Autowired VoteCounter voteCounter;
+
     @RequestMapping("/")
     public ModelAndView landing(Model model) {
     LOG.info("Landing page access");
@@ -34,7 +36,7 @@ public class Main {
 
     @RequestMapping("/count")
     public ModelAndView updateCount() {
-        new VoteCounter(voteRepository, voteCountRepository).count();
+        voteCounter.count();
         return new ModelAndView("count");
     }
 
