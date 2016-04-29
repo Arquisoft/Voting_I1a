@@ -1,7 +1,5 @@
 package controller;
 
-import dao.VoterDao;
-import dao.jpa.VoterRepository;
 import dao.jpa.VoterRepositoryDao;
 import dto.VoterInfo;
 import dto.VoterLogin;
@@ -12,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 /**
  * Controller for the Voter
  */
@@ -19,8 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class VoterController {
 
     @Autowired
-    private VoterRepository repository;
-    private VoterDao dao = new VoterRepositoryDao(repository);
+    private VoterRepositoryDao dao;
 
     /**
      * Process a request to /voter. Checks that the given password matches a voter, and, if it does, respond with

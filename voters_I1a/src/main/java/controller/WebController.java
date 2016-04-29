@@ -1,7 +1,5 @@
 package controller;
 
-import dao.VoterDao;
-import dao.jpa.VoterRepository;
 import dao.jpa.VoterRepositoryDao;
 import dto.VoterLogin;
 import dto.VoterPasswordUpdate;
@@ -11,19 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 
 @Controller
 public class WebController {
 
     @Autowired
-    private VoterRepository repository;
-    private VoterDao dao;
-
-    @PostConstruct
-    private void init() {
-        dao = new VoterRepositoryDao(repository);
-    }
+    private VoterRepositoryDao dao;
 
     /**
      * Serve the get info page
