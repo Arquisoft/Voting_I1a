@@ -1,4 +1,4 @@
-package test.java.es.uniovi.asw.steps;
+/*package test.java.es.uniovi.asw.steps;
 
 import main.java.es.uniovi.asw.Application;
 import main.java.es.uniovi.asw.access.LogInEV;
@@ -43,4 +43,4 @@ public class InvalidNifSteps {
 		  org.junit.Assert.assertNotNull(Database.findVoter("71900605A"));
 		  org.junit.Assert.assertTrue(exception.getMessage().contains("This voter does not exist"));
 	  }  
-}
+}*/

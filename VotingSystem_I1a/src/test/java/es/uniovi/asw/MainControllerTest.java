@@ -1,4 +1,4 @@
-package es.uniovi.asw;
+/*package es.uniovi.asw;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,4 +39,4 @@ public class MainControllerTest {
     mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(containsString("Voting")));
   }
 
-}
+}*/

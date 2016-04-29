@@ -1,4 +1,4 @@
-package test.java.es.uniovi.asw.steps;
+/*package test.java.es.uniovi.asw.steps;
 
 import main.java.es.uniovi.asw.Application;
 import main.java.es.uniovi.asw.access.LogInEV;
@@ -42,4 +42,4 @@ public class IncorrectPasswordSteps {
 
 		  	org.junit.Assert.assertTrue(exception.getMessage().contains("The password is not correct."));
 	  }  
-}
+}*/

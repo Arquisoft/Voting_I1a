@@ -1,17 +1,15 @@
 package test.java.es.uniovi.asw.access;
 
-import static org.junit.Assert.*;
-
 import java.sql.SQLException;
 
+import junit.framework.TestCase;
 import main.java.es.uniovi.asw.access.LogInEV;
 import main.java.es.uniovi.asw.exceptions.ExceptionMessages;
 import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
 import main.java.es.uniovi.asw.model.Voter;
 
-import org.junit.Test;
 
-public class LoginEVTest {
+public class LoginEVTest extends TestCase{
 	
 	//registered e-voters who have not voted yet
 	private static Voter voter1 = new Voter("XXXX", "name1", "email1", "pass1", false, true);
@@ -20,14 +18,12 @@ public class LoginEVTest {
 	//not e-voter
 	private static Voter voter3 = new Voter("ZZZZ", "name3", "email3", "pass3", false, false);
 	
-	@Test
 	public static void insertVoters() throws InvalidParameterException{
 		DatabaseToTest.insertVoter(voter1);
 		DatabaseToTest.insertVoter(voter2);
 		DatabaseToTest.insertVoter(voter3);
 	}
 	
-	@Test
 	public void testLogIn() throws SQLException, InvalidParameterException{
 		Voter test;
 		
