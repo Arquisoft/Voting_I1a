@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = VoterRepository.class)
 @EntityScan(basePackages = "model")
-@ComponentScan({"dao.jap", "controller"})
+@ComponentScan({"dao.jpa", "controller"})
 public class Application {
 
     public static void main(String[] args) {
