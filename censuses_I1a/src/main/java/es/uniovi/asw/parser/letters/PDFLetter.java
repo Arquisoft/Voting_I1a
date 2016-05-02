@@ -1,21 +1,20 @@
 package es.uniovi.asw.parser.letters;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import es.uniovi.asw.models.Voter;
 
-import es.uniovi.asw.voter.Voter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 /**
  * This class generates PDF letters
  * @author UO238754
  */
-public class PDFLetter implements LetterGenerator{
+public class PDFLetter implements LetterGenerator {
 
 	@Override
 	public void generateLetter(Voter voter) throws FileNotFoundException, DocumentException {

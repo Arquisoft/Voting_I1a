@@ -1,14 +1,15 @@
 package es.uniovi.asw.parser;
 
-import java.util.List;
-import es.uniovi.asw.dbupdate.Insert;
-import es.uniovi.asw.dbupdate.InsertServices;
-import es.uniovi.asw.dbupdate.InsertVoters;
+import es.uniovi.asw.models.Voter;
 import es.uniovi.asw.parser.letters.LetterGenerator;
 import es.uniovi.asw.parser.letters.TxtLetter;
 import es.uniovi.asw.parser.reader.ExcelReader;
 import es.uniovi.asw.parser.reader.FileReader;
-import es.uniovi.asw.voter.Voter;
+import es.uniovi.asw.persistence.VoterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * This is the core class of the Parser component. It receives the file from the
@@ -20,7 +21,12 @@ import es.uniovi.asw.voter.Voter;
  * @author UO238739
  *
  */
+@Component
 public class CensusParser {
+
+	@Autowired
+	private VoterRepository voterRepository;
+
 	private FileReader reader;
 	private LetterGenerator letterGenerator;
 
@@ -50,8 +56,7 @@ public class CensusParser {
 			}
 
 			// upload voters to the DB
-			Insert updateDb = new InsertServices();
-			updateDb.insert(voters);
+			voterRepository.save(voters);
 
 			// create letters
 			for (Voter voter : voters) {

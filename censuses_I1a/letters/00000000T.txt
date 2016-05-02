@@ -1,0 +1,3 @@
+Testín Téstez, you have been added to the Electoral Roll 
+Your login name is: test@email.com
+Your password is: null

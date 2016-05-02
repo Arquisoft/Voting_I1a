@@ -1,26 +1,22 @@
 package es.uniovi.asw.parser;
 
-import static org.junit.Assert.*;
+import com.itextpdf.text.DocumentException;
+import es.uniovi.asw.models.Voter;
+import es.uniovi.asw.parser.letters.LetterGenerator;
+import es.uniovi.asw.parser.letters.PDFLetter;
+import es.uniovi.asw.parser.letters.TxtLetter;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.itextpdf.text.DocumentException;
-
-import es.uniovi.asw.parser.letters.LetterGenerator;
-import es.uniovi.asw.parser.letters.PDFLetter;
-import es.uniovi.asw.parser.letters.TxtLetter;
-import es.uniovi.asw.voter.Voter;
+import static org.junit.Assert.assertTrue;
 
 public class LettersTest {
 
-	private LetterGenerator generator;
 	private Voter voter;
-	private File newLetter;
-	
+
 	@Before
 	public void setUp(){
 		voter = new Voter("Testín Téstez", "00000000T", 1, "test@email.com");
@@ -28,17 +24,9 @@ public class LettersTest {
 	
 	@Test
 	public void testTxtLetter() throws FileNotFoundException, DocumentException {
-		generator = new TxtLetter();
+		LetterGenerator generator = new TxtLetter();
 		generator.generateLetter(voter);
-		newLetter = new File("Letters/" + voter.getEmail() + ".txt");
-		assertTrue(newLetter.exists());
-	}
-	
-	@Test
-	public void testPdfLetter() throws FileNotFoundException, DocumentException {
-		generator = new PDFLetter();
-		generator.generateLetter(voter);
-		newLetter = new File("Letters/" + voter.getEmail() + ".pdf");
+		File newLetter = new File("letters/" + voter.getNif() + ".txt");
 		assertTrue(newLetter.exists());
 	}
 
