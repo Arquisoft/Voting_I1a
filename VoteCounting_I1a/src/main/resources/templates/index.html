@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="results" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script th:src="@{/scripts/results.js}"></script>
+    <title>Vote counting</title>
+</head>
+<body ng-controller="Counting">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Voting</a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Vote counting</a></li>
+                    <li><a href="/admin">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <h1>Vote counting results</h1>
+            <p>Updating in {{secondsToUpdate}}</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button" ng-click="forceUpdate()">Update now</a></p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Results</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Political party</th>
+                                    <th>Total votes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="result in results">
+                                    <td>{{result.politicalParty.name}}</td>
+                                    <td>{{result.totalVotes}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Pie chart</div>
+                    <div class="panel-body">
+                        <div id="piechart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

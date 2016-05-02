@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestService {
 
     @Autowired
-    private VoteCountRepository voteCountRepository;
+    private Results results;
 
     @RequestMapping("/api/results")
     public Iterable<VoteCount> results() {
-        return new Results(voteCountRepository).results();
+        return results.results();
     }
 
 }
