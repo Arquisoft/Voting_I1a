@@ -41,7 +41,7 @@ public class MainControllerTest {
   
   @Test
   public void testResults() throws Exception {
-    mvc.perform(get("/results")).andExpect(status().isOk()).andExpect(content().string(containsString("Political")));
+    mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(containsString("Political")));
   }
 
 

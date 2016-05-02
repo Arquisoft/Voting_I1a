@@ -61,6 +61,6 @@ public class Main {
         voteRepository.save(new Vote(pepe));
         voteRepository.save(new Vote(trump));
 
-        return new ModelAndView("/");
+        return new ModelAndView("index");
     }
 }
