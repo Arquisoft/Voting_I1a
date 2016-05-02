@@ -17,30 +17,18 @@ public class Voter {
     private String nif;
     private String email;
     private String name;
-
-    @Transient
     private String password;
-
-    @Column(name = "password")
-    private String hashedPassword;
-
-    private String pollingStationCode;
+    private int pollingStationCode;
 
     public Voter() {}
 
-    public Voter(long id, String nif, String name, String email, String password, String pollingStationCode) {
+    public Voter(long id, String nif, String name, String email, String password, int pollingStationCode) {
         this.id = id;
         this.nif = nif;
         this.email = email;
         this.name = name;
         this.password = password;
-        hashPassword(password);
         this.pollingStationCode = pollingStationCode;
-    }
-
-    private void hashPassword(String password) {
-        String salt = BCrypt.gensalt(12);
-        this.hashedPassword = BCrypt.hashpw(password, salt);
     }
 
     /**
@@ -49,7 +37,7 @@ public class Voter {
      * @return True when it does. False otherwise
      */
     public boolean checkPassword(String password) {
-        return BCrypt.checkpw(password, this.hashedPassword);
+        return this.password.equals(password);
     }
 
     public String getNif() {
@@ -68,11 +56,7 @@ public class Voter {
         return password;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public String getPollingStationCode() {
+    public int getPollingStationCode() {
         return pollingStationCode;
     }
 
@@ -94,14 +78,9 @@ public class Voter {
 
     public void setPassword(String password) {
         this.password = password;
-        this.hashPassword(password);
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    public void setPollingStationCode(String pollingStationCode) {
+    public void setPollingStationCode(int pollingStationCode) {
         this.pollingStationCode = pollingStationCode;
     }
     
@@ -112,60 +91,31 @@ public class Voter {
 				+ ", password=" + password + ", pollingStationCode="
 				+ pollingStationCode + "]";
 	}
-	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((nif == null) ? 0 : nif.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
-		result = prime
-				* result
-				+ ((pollingStationCode == null) ? 0 : pollingStationCode
-						.hashCode());
-		return result;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Voter other = (Voter) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (nif == null) {
-			if (other.nif != null)
-				return false;
-		} else if (!nif.equals(other.nif))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (pollingStationCode == null) {
-			if (other.pollingStationCode != null)
-				return false;
-		} else if (!pollingStationCode.equals(other.pollingStationCode))
-			return false;
-		return true;
-	}
-    
-    
+        Voter voter = (Voter) o;
+
+        if (id != voter.id) return false;
+        if (pollingStationCode != voter.pollingStationCode) return false;
+        if (nif != null ? !nif.equals(voter.nif) : voter.nif != null) return false;
+        if (email != null ? !email.equals(voter.email) : voter.email != null) return false;
+        if (name != null ? !name.equals(voter.name) : voter.name != null) return false;
+        return password != null ? password.equals(voter.password) : voter.password == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (nif != null ? nif.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + pollingStationCode;
+        return result;
+    }
 }

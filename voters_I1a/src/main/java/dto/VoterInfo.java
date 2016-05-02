@@ -10,9 +10,9 @@ public class VoterInfo {
     private String email;
     private String nif;
     private String name;
-    private String pollingStationCode;
+    private int pollingStationCode;
 
-    public VoterInfo(String email, String name, String nif, String pollingStationCode) {
+    public VoterInfo(String email, String name, String nif, int pollingStationCode) {
         this.email = email;
         this.name = name;
         this.nif = nif;
@@ -31,7 +31,7 @@ public class VoterInfo {
         return name;
     }
 
-    public String getPollingStationCode() {
+    public int getPollingStationCode() {
         return pollingStationCode;
     }
 
