@@ -1,4 +1,4 @@
-package main.java.es.uniovi.asw.dbUpdate.verifiers;
+package es.uniovi.asw.dbUpdate.verifiers;
 
 import main.java.es.uniovi.asw.exceptions.ExceptionMessages;
 import main.java.es.uniovi.asw.exceptions.InvalidParameterException;

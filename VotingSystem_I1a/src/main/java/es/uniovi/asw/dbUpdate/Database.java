@@ -1,4 +1,4 @@
-package main.java.es.uniovi.asw.dbUpdate;
+package es.uniovi.asw.dbUpdate;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

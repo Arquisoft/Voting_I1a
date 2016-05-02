@@ -1,4 +1,4 @@
-package main.java.es.uniovi.asw.access;
+package es.uniovi.asw.access;
 
 import java.sql.SQLException;
 

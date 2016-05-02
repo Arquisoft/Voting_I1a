@@ -1,4 +1,4 @@
-package main.java.es.uniovi.asw.exceptions;
+package es.uniovi.asw.exceptions;
 
 
 /**

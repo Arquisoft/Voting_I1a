@@ -1,12 +1,24 @@
-package main.java.es.uniovi.asw.model;
+package es.uniovi.asw.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Vote {
-	
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+
 	private Option option;
-	
+
 	private VotingPlace votingPlace;
+
+	private String pollingStationCode;
 	
 	public Vote(Long id, Option option){
 		this.id = id;
@@ -16,11 +28,23 @@ public class Vote {
 	public Vote(Option option){
 		this.option = option;
 	}
+
+	public Vote(Long id, Option option, String pollingStationCode) {
+		this.id = id;
+		this.option = option;
+		this.pollingStationCode = pollingStationCode;
+	}
 	
 	public Vote(Long id, Option option, VotingPlace votingPlace) {
 		this.id = id;
 		this.option = option;
 		this.votingPlace = votingPlace;
+	}
+
+	public String getPollingStationCode() { return pollingStationCode; }
+
+	public void setPollingStationCode(String pollingStationCode) {
+		this.pollingStationCode = pollingStationCode;
 	}
 
 	public String getOptionS() {

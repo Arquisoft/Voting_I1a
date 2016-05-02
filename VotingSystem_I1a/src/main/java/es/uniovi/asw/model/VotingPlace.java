@@ -1,4 +1,4 @@
-package main.java.es.uniovi.asw.model;
+package es.uniovi.asw.model;
 
 /**
  *

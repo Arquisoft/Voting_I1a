@@ -1,4 +1,4 @@
-package main.java.es.uniovi.asw.dbUpdate.verifiers;
+package es.uniovi.asw.dbUpdate.verifiers;
 
 import main.java.es.uniovi.asw.exceptions.ExceptionMessages;
 import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
@@ -9,7 +9,7 @@ public class VoteVerifier {
 
 	public static void check(Vote vote) throws InvalidParameterException{
 		
-		if(vote.getOption()!=Option.Candidate1 || vote.getOption()!= Option.Candidate2 
+		if(vote.getOption()!=Option.Candidate1|| vote.getOption()!= Option.Candidate2
 				||vote.getOption()!=Option.Candidate3 || vote.getOption()!=Option.Candidate4 
 				|| vote.getOption()!=Option.nulo
 				|| vote.getOption()!=Option.whiteVote){

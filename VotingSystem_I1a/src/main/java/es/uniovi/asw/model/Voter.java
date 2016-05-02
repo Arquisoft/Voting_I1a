@@ -1,12 +1,22 @@
-package main.java.es.uniovi.asw.model;
+package es.uniovi.asw.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Voter {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; //identifier of the user
+
 	private String name; //name of the user
 	private String email; 
 	private String nif; 
 	private String password;  //password to access the system
+	private String pollingStationCode;
 	private boolean hasVoted; //boolean to store if the person has already voted or not
 	private boolean isEVoter; //boolean to know if the voter can vote online 
 	
@@ -42,6 +52,12 @@ public class Voter {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPollingStationCode() { return pollingStationCode; }
+
+	public void setPollingStationCode(String pollingStationCode) {
+		this.pollingStationCode = pollingStationCode;
 	}
 
 
