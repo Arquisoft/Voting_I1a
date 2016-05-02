@@ -1,8 +1,10 @@
 package es.uniovi.asw.parser;
 
+import es.uniovi.asw.parser.reader.ExcelReader;
+import es.uniovi.asw.parser.reader.FileReader;
 import org.apache.commons.cli.*;
-
-import es.uniovi.asw.parser.reader.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Class that reads from CMD.
@@ -11,6 +13,7 @@ import es.uniovi.asw.parser.reader.*;
  * @author UO238739
  *
  */
+@Component
 public class ArgumentsParser implements ReadCensus {
 
 	public static final String EXCEL_FORMAT = ".xlsx";
@@ -18,33 +21,34 @@ public class ArgumentsParser implements ReadCensus {
 	private CommandLineParser parser = new DefaultParser();
 	private Options options = new Options();
 	private String file;
+
 	private FileReader reader;
+    @Autowired private CensusParser censusParser;
 
 	public ArgumentsParser() {
 		options.addOption(EXCEL_OPTION, true, "Excel file to be processed");
 	}
 
-	void processArguments(String[] args) throws ParseException {
+	public void processArguments(String[] args) throws ParseException {
 		String file;
 		CommandLine line;
-			line = parser.parse(options, args);
-			if( line.hasOption(EXCEL_OPTION) ) {
-				file = line.getOptionValue(EXCEL_OPTION);
-				if(file.endsWith(EXCEL_FORMAT)){
-					this.file = file;
-					this.reader = new ExcelReader();
-				} else {
-					throw new IllegalArgumentException("The format is not " + EXCEL_FORMAT + "\n");
-				}
-			}
+        line = parser.parse(options, args);
+        if( line.hasOption(EXCEL_OPTION) ) {
+            file = line.getOptionValue(EXCEL_OPTION);
+            if(file.endsWith(EXCEL_FORMAT)){
+                this.file = file;
+                this.reader = new ExcelReader();
+            } else {
+                throw new IllegalArgumentException("The format is not " + EXCEL_FORMAT + "\n");
+            }
+        }
 	}
 
 	@Override
 	public void read(String[] args) {
 		try {
 			processArguments(args);
-			CensusParser parser = new CensusParser(reader);
-			parser.process(file);
+			censusParser.process(file);
 		} catch (ParseException | IllegalArgumentException exp) {
 			System.err.println( "ERROR: " + exp.getMessage() );
 		}

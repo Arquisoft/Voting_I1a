@@ -1,16 +1,15 @@
 package es.uniovi.asw.parser;
 
+import es.uniovi.asw.models.Voter;
+import es.uniovi.asw.parser.reader.ExcelReader;
+import es.uniovi.asw.parser.reader.FileReader;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
-import es.uniovi.asw.parser.reader.ExcelReader;
-import es.uniovi.asw.parser.reader.FileReader;
-import es.uniovi.asw.voter.Voter;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class ExcelReaderTest {
 
@@ -20,7 +19,7 @@ public class ExcelReaderTest {
 		FileReader reader = new ExcelReader();
 		List<Voter> expectedVoters = getVotersList();
 		
-		votersFromFile = reader.read("src/test/resources/test.xlsx");
+		votersFromFile = reader.read("test.xlsx");
 		for(Voter voterFromFile : votersFromFile){
 			assertTrue(containsVoter(expectedVoters, voterFromFile));
 		}
@@ -40,7 +39,7 @@ public class ExcelReaderTest {
 		return voter1.getEmail().equals(voter2.getEmail()) &&
 				voter1.getName().equals(voter2.getName()) &&
 				voter1.getNif().equals(voter2.getNif()) &&
-				voter1.getPollingStation().equals(voter2.getPollingStation());
+				voter1.getPollingStationCode() == voter2.getPollingStationCode();
 	}
 
 	private List<Voter> getVotersList(){

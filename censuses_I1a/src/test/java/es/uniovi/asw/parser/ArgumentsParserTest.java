@@ -1,13 +1,13 @@
 package es.uniovi.asw.parser;
 
-import static org.junit.Assert.*;
-
+import es.uniovi.asw.parser.reader.ExcelReader;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.uniovi.asw.parser.reader.ExcelReader;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ArgumentsParserTest {
 	
@@ -20,7 +20,7 @@ public class ArgumentsParserTest {
 
 	@Test
 	public void testExcelArguments() throws ParseException {
-		String[] args = {"-"+ArgumentsParser.EXCEL_OPTION, "src/test/resources/test.xlsx"};
+		String[] args = {"-"+ ArgumentsParser.EXCEL_OPTION, "src/test/resources/test.xlsx"};
 		argParser.processArguments(args);
 		assertEquals(args[1], argParser.getFile());
 		assertTrue(argParser.getReader() instanceof ExcelReader);
@@ -28,13 +28,13 @@ public class ArgumentsParserTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testWrongFormat() throws ParseException{
-		String[] args = {"-"+ArgumentsParser.EXCEL_OPTION, "src/test/resources/test.doc"};
+		String[] args = {"-"+ ArgumentsParser.EXCEL_OPTION, "src/test/resources/test.doc"};
 		argParser.processArguments(args);
 	}
 	
 	@Test(expected=MissingArgumentException.class)
 	public void testMissingArgument() throws ParseException{
-		String[] args = {"-"+ArgumentsParser.EXCEL_OPTION};
+		String[] args = {"-"+ ArgumentsParser.EXCEL_OPTION};
 		argParser.processArguments(args);
 	}
 

@@ -1,15 +1,14 @@
 package es.uniovi.asw.parser.reader;
 
+import es.uniovi.asw.models.Voter;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import es.uniovi.asw.voter.Voter;
 
 /**
  * Class that reads from an excel file to pass the data to a database
@@ -102,14 +101,14 @@ public class ExcelReader implements FileReader {
 			}
 		}
 		if(!allElementsTrue(fieldPresent)){
-			// TODO error
+			throw new RuntimeException("Incorrect format");
 		}
 		
 	} 
 	
 	private boolean allElementsTrue(boolean[] array){
 		for(boolean value: array){
-			if(value == false){
+			if(!value){
 				return false;
 			}
 		}
