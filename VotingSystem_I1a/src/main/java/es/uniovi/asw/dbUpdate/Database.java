@@ -14,10 +14,11 @@ import es.uniovi.asw.model.Voter;
 
 public class Database {
 	
-	public Vote insertVote(Vote vote) throws SQLException, InvalidParameterException {
-		
+	public boolean insertVote(Vote vote) throws SQLException, InvalidParameterException {
+
 		//DriverManager = "org.hsqldb.jdbcDriver";
-		
+
+
 		String url = "jdbc:hsqldb:file:src/main/resources/database/db";
 		String username = "SA";
 		String password = "";
@@ -27,29 +28,32 @@ public class Database {
 		
 		String query = "INSERT INTO votes (option) VALUES(?)";
 
-		VoteVerifier.check(vote);
-		
-		try {
-			conn = DriverManager.getConnection(url,username, password);
-			
-			stat = conn.prepareStatement(query);
-		
-			stat.setString(1, vote.getOptionS());
-			stat.executeUpdate();
-			return vote;
-			
-		}catch (SQLException e){
-			System.err.print("error connecting \n");
-			e.printStackTrace();
+		if( VoteVerifier.check(vote)) {
+
+			try {
+				conn = DriverManager.getConnection(url, username, password);
+
+				stat = conn.prepareStatement(query);
+
+				stat.setString(1, vote.getOption().toString());
+				stat.executeUpdate();
+
+				return true;
+
+			} catch (SQLException e) {
+				System.err.print("error connecting \n");
+				e.printStackTrace();
+			}
 		}
 		
-		return vote;
+		return false;
 	}
-	
+
+
 	public Voter findVoter(String nif) throws SQLException{
-		
+
 		Voter voter = null;
-		
+
 		//DriverManager = "org.hsqldb.jdbcDriver";
 		String url = "jdbc:hsqldb:file:src/main/resources/database/db";
 		String username = "SA";
@@ -58,18 +62,26 @@ public class Database {
 		Connection conn = null;
 		PreparedStatement stat = null;
 				
-		String query = "SELECT nif, name, email, password, hasVoted, "
-				+ "isEVoter FROM voters  WHERE v.nif =?";
+		String query = "SELECT * FROM voters  WHERE v.nif = ?";
 
 		try {
 			conn = DriverManager.getConnection(url,username, password);
 					
 			stat = conn.prepareStatement(query);
-			ResultSet rs = stat.executeQuery(query);
+			stat.setString(1,nif);
+
+			ResultSet rs = stat.executeQuery();
 			
 			while(rs.next()){
-				voter = new Voter(rs.getString(1), rs.getString(2), rs.getString(3), 
-								rs.getString(4), rs.getBoolean(5), rs.getBoolean(6));
+
+			voter = new Voter();
+				voter.setNif(rs.getString("nif"));
+				voter.setEmail(rs.getString("email"));
+				voter.setName(rs.getString("name"));
+				voter.setPassword(rs.getString("password"));
+				voter.setPollingStationCode(rs.getInt("pollingStationCode"));
+				voter.setHasVoted(rs.getBoolean("hasVoted"));
+
 			}	
 		}catch (SQLException e){
 			System.err.print("error connecting \n");
@@ -79,7 +91,7 @@ public class Database {
 		return voter;
 	}
 	
-	public Voter updateHasVoted(Voter voter) throws SQLException, InvalidParameterException {
+	public boolean updateHasVoted(Voter voter) throws SQLException, InvalidParameterException {
 		
 		//DriverManager = "org.hsqldb.jdbcDriver";
 		String url = "jdbc:hsqldb:file:src/main/resources/database/db";
@@ -101,16 +113,18 @@ public class Database {
 			stat.setBoolean(1, voter.isHasVoted());
 			stat.setString(2, voter.getNif());
 			stat.executeUpdate();
-			return voter;
+
+			return true;
 			
 		}catch (SQLException e){
 			System.err.print("error connecting \n");
 			e.printStackTrace();
 		}
 		
-		return voter;
+		return false;
 	}
-	
+
+	/*
 	public Voter addNewEVoter(Voter voter) throws SQLException, InvalidParameterException{
 		
 		//DriverManager = "org.hsqldb.jdbcDriver";
@@ -141,5 +155,5 @@ public class Database {
 		}
 				
 		return voter;	
-	}
+	}*/
 }

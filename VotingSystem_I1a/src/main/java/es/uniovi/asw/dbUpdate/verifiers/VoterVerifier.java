@@ -1,23 +1,23 @@
 package es.uniovi.asw.dbUpdate.verifiers;
 
-import es.uniovi.asw.exceptions.ExceptionMessages;
-import es.uniovi.asw.exceptions.InvalidParameterException;
 import es.uniovi.asw.model.Voter;
 
 public class VoterVerifier {
 	
-	public static void check(Voter voter) throws InvalidParameterException{
+	public static boolean check(Voter voter){
 		
 		if(voter == null){
-			throw new InvalidParameterException(ExceptionMessages.VOTER_DOES_NOT_EXIST);
+			return false;
 		}
 
-		if(voter.getName() == null || voter.getName().equals("")){
-			throw new InvalidParameterException(ExceptionMessages.VOTER_MUST_HAVE_NAME);
+		else if(voter.getName() == null || voter.getName().equals("")){
+			return false;
 		}
 		
-		if(voter.getNif() == null || voter.getNif().equals("")){
-			throw new InvalidParameterException(ExceptionMessages.NIF_COMPULSORY);
+		else if(voter.getNif() == null || voter.getNif().equals("")){
+			return false;
 		}
+
+		return true;
 	}
 }
