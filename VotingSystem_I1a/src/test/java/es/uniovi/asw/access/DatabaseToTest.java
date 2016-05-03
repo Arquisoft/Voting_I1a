@@ -1,13 +1,13 @@
-package test.java.es.uniovi.asw.access;
+/*package test.java.es.uniovi.asw.access;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import main.java.es.uniovi.asw.dbUpdate.verifiers.VoterVerifier;
-import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
-import main.java.es.uniovi.asw.model.Voter;
+import es.uniovi.asw.dbUpdate.verifiers.VoterVerifier;
+import es.uniovi.asw.exceptions.InvalidParameterException;
+import es.uniovi.asw.model.Voter;
 
 public class DatabaseToTest {
 	
@@ -43,4 +43,4 @@ public class DatabaseToTest {
 			e.printStackTrace();
 		}
 	}
-}
+}*/

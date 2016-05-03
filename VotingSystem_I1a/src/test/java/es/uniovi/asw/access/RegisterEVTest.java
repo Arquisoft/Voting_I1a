@@ -1,12 +1,12 @@
-package test.java.es.uniovi.asw.access;
+/*package test.java.es.uniovi.asw.access;
 
 import java.sql.SQLException;
 
 import junit.framework.TestCase;
-import main.java.es.uniovi.asw.access.RegisterEV;
-import main.java.es.uniovi.asw.exceptions.ExceptionMessages;
-import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
-import main.java.es.uniovi.asw.model.Voter;
+import es.uniovi.asw.access.RegisterEV;
+import es.uniovi.asw.exceptions.ExceptionMessages;
+import es.uniovi.asw.exceptions.InvalidParameterException;
+import es.uniovi.asw.model.Voter;
 
 public class RegisterEVTest extends TestCase {
 		
@@ -61,4 +61,4 @@ public class RegisterEVTest extends TestCase {
 			assertEquals(ExceptionMessages.ALREADY_EVOTER, message);
 		}
 
-}
+}*/

@@ -1,12 +1,12 @@
-package test.java.es.uniovi.asw.access;
+/*package test.java.es.uniovi.asw.access;
 
 import java.sql.SQLException;
 
 import junit.framework.TestCase;
-import main.java.es.uniovi.asw.access.LogInEV;
-import main.java.es.uniovi.asw.exceptions.ExceptionMessages;
-import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
-import main.java.es.uniovi.asw.model.Voter;
+import es.uniovi.asw.access.LogInEV;
+import es.uniovi.asw.exceptions.ExceptionMessages;
+import es.uniovi.asw.exceptions.InvalidParameterException;
+import es.uniovi.asw.model.Voter;
 
 
 public class LoginEVTest extends TestCase{
@@ -72,4 +72,4 @@ public class LoginEVTest extends TestCase{
 	
 		assertEquals(ExceptionMessages.NOT_EVOTER, message);
 	}
-}
+}*/
