@@ -11,4 +11,7 @@ Voting System
 
 * Jose Labra
 * José Chamadoira
+* Oscar Rubio
+* Sergio Ivan Franco
+* Katia
 
