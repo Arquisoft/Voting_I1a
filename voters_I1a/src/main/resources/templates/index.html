@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script th:src="@{/voters.js}"></script>
+    <meta charset="UTF-8" />
+    <title>Voters system</title>
+</head>
+<body ng-app="voters">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Voters</a>
+                </div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Vote counting</a></li>
+            </ul>
+        </nav>
+
+        <div class="jumbotron">
+            <h1>Welcome to the voters system</h1>
+            <p>
+                Login to see your information in the census and change your password
+            </p>
+        </div>
+
+        <div class="row" ng-controller="VoterController">
+            <div class="col-md-6">
+                <form ng-submit="login()">
+                    <div class="form-group">
+                        <h3>Login</h3>
+                        <div ng-hide="!loginError" class="alert alert-danger">Invalid credentials</div>
+                        <label for="email">Email</label>
+                        <input id="email" class="form-control" type="email" placeholder="Email" ng-model="email" />
+                        <label for="password">Password</label>
+                        <input id="password" class="form-control" type="password" placeholder="Password" ng-model="password" />
+                    </div>
+
+                    <input type="submit" value="Log in" class="btn btn-default" />
+                </form>
+            </div>
+
+            <div class="col-md-6" ng-hide="!logged">
+                <div class="row">
+                    <h3>Your info: </h3>
+                    <ul>
+                        <li>Email: {{user.email}}</li>
+                        <li>NIF: {{user.nif}}</li>
+                        <li>Name: {{user.name}}</li>
+                        <li>Polling station code: {{user.pollingStationCode}}</li>
+                    </ul>
+                </div>
+                <hr />
+                <div class="row">
+                    <form ng-submit="changePassword()">
+                        <div class="form-group">
+                            <h3>Change your password</h3>
+                            <div ng-hide="!changePwdSuccess" class="alert alert-success">Password successfully changed</div>
+                            <div ng-hide="!changePwdError" class="alert alert-danger">The passwords don't match</div>
+
+                            <label for="newPwd">New password</label>
+                            <input id="newPwd" class="form-control" type="password" placeholder="New password" ng-model="newPassword" />
+                            <label for="newPwd2">Password</label>
+                            <input id="newPwd2" class="form-control" type="password" placeholder="Password" ng-model="newPasswordRepeat" />
+                        </div>
+
+                        <input type="submit" value="Change password" class="btn btn-default" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

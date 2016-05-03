@@ -18,13 +18,15 @@ import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SeleniumTest {
+
     private char[] charNumber= {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    private static final String BASE_URL = "http://localhost:8080";
     WebDriver driver;
 
     @Before
     public void run() {
         driver = new FirefoxDriver();
-        driver.get("http://localhost:8080");
+        driver.get(BASE_URL);
     }
 
     @After
@@ -34,22 +36,17 @@ public class SeleniumTest {
 
     @Test
     public void t01_loadMainPage(){
-        assertTextInBody("Voting System");
+        assertTextInBody("Voting");
         assertTextInBody("Admin");
-        assertTextInBody("Seed database");
-        assertTextInBody("Count votes");
-        assertTextInBody("Public");
-        assertTextInBody("View results");
+        assertTextInBody("Vote counting");
+        assertTextInBody("Vote counting results");
     }
 
     @Test
     public void t02_viewResultsWithoutSeedingDatabase() throws InterruptedException {
-        driver.findElement(By.id("results")).click();
-        Thread.sleep(1000);
-
         assertTextInBody("Political party");
         assertTextInBody("Total votes");
-        assertTextInBody("Results chart");
+        assertTextInBody("Pie chart");
         assertTextNotInBody("Trump");
     }
 
@@ -57,16 +54,13 @@ public class SeleniumTest {
     public void t03_viewResultsWithSeedingAndWithoutCounting() throws InterruptedException {
         seedDatabase();
 
-        driver.findElement(By.id("results")).click();
-        Thread.sleep(1000);
-
         assertTextInBody("Political party");
         assertTextInBody("Total votes");
         assertTextInBody("Results chart");
 
         //check there is no votes
         for(char character : charNumber) {
-            assertTextNotInBody(String.valueOf(character));
+            assertTextInBody("0");
         }
     }
 
@@ -74,15 +68,14 @@ public class SeleniumTest {
     public void t04_countVotes() throws InterruptedException {
         seedDatabase();
 
+        driver.findElement(By.id("admin")).click();
+        Thread.sleep(1000);
         driver.findElement(By.id("count")).click();
+
+        driver.navigate().to(BASE_URL);
         Thread.sleep(1000);
 
-        assertTextInBody("Vote counting finished successfully");
-
-        driver.navigate().back();
-        Thread.sleep(1000);
-
-        assertTextInBody("Voting System");
+        assertTextInBody("Vote counting results");
     }
 
     @Test
@@ -90,9 +83,6 @@ public class SeleniumTest {
         seedDatabase();
 
         t04_countVotes();
-
-        driver.findElement(By.id("results")).click();
-        Thread.sleep(1000);
 
         assertTextInBody("Political party");
         assertTextInBody("Total votes");
@@ -110,7 +100,7 @@ public class SeleniumTest {
     }
 
     private void seedDatabase() throws InterruptedException {
-        driver.findElement(By.id("seed")).click();
+        driver.navigate().to(BASE_URL + "/seed");
         Thread.sleep(1000);
     }
 

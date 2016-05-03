@@ -7,12 +7,10 @@ import es.uniovi.asw.model.VoteCount;
 import es.uniovi.asw.persistence.PoliticalPartyRepository;
 import es.uniovi.asw.persistence.VoteCountRepository;
 import es.uniovi.asw.persistence.VoteRepository;
-import es.uniovi.asw.results.Results;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,20 +27,19 @@ public class Main {
     @Autowired VoteCounter voteCounter;
 
     @RequestMapping("/")
-    public ModelAndView landing(Model model) {
-    LOG.info("Landing page access");
-    return new ModelAndView("landing");
+    public ModelAndView landing() {
+    return new ModelAndView("index");
+    }
+
+    @RequestMapping("/admin")
+    public ModelAndView admin() {
+        return new ModelAndView("admin");
     }
 
     @RequestMapping("/count")
     public ModelAndView updateCount() {
         voteCounter.count();
-        return new ModelAndView("count");
-    }
-
-    @RequestMapping("/results")
-    public ModelAndView results() {
-        return new ModelAndView("results");
+        return new ModelAndView("admin");
     }
 
     @RequestMapping("/seed")
@@ -64,6 +61,6 @@ public class Main {
         voteRepository.save(new Vote(pepe));
         voteRepository.save(new Vote(trump));
 
-        return new ModelAndView("landing");
+        return new ModelAndView("index");
     }
 }
