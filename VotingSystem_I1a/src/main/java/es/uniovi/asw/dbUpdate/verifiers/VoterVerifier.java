@@ -1,8 +1,8 @@
 package es.uniovi.asw.dbUpdate.verifiers;
 
-import main.java.es.uniovi.asw.exceptions.ExceptionMessages;
-import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
-import main.java.es.uniovi.asw.model.Voter;
+import es.uniovi.asw.exceptions.ExceptionMessages;
+import es.uniovi.asw.exceptions.InvalidParameterException;
+import es.uniovi.asw.model.Voter;
 
 public class VoterVerifier {
 	

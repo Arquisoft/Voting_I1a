@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import main.java.es.uniovi.asw.dbUpdate.verifiers.VoteVerifier;
-import main.java.es.uniovi.asw.dbUpdate.verifiers.VoterVerifier;
-import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
-import main.java.es.uniovi.asw.model.Vote;
-import main.java.es.uniovi.asw.model.Voter;
+import es.uniovi.asw.dbUpdate.verifiers.VoteVerifier;
+import es.uniovi.asw.dbUpdate.verifiers.VoterVerifier;
+import es.uniovi.asw.exceptions.InvalidParameterException;
+import es.uniovi.asw.model.Vote;
+import es.uniovi.asw.model.Voter;
 
 public class Database {
 	

@@ -2,10 +2,10 @@ package es.uniovi.asw.access;
 
 import java.sql.SQLException;
 
-import main.java.es.uniovi.asw.dbUpdate.Database;
-import main.java.es.uniovi.asw.exceptions.InvalidParameterException;
-import main.java.es.uniovi.asw.model.Vote;
-import main.java.es.uniovi.asw.model.Voter;
+import es.uniovi.asw.dbUpdate.Database;
+import es.uniovi.asw.exceptions.InvalidParameterException;
+import es.uniovi.asw.model.Vote;
+import es.uniovi.asw.model.Voter;
 
 /**
  * Class that allows to vote
