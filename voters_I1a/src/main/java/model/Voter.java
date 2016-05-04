@@ -19,6 +19,7 @@ public class Voter {
     private String name;
     private String password;
     private int pollingStationCode;
+    private boolean hasVoted;
 
     public Voter() {}
 
@@ -29,6 +30,7 @@ public class Voter {
         this.name = name;
         this.password = password;
         this.pollingStationCode = pollingStationCode;
+        this.hasVoted = false;
     }
 
     /**
