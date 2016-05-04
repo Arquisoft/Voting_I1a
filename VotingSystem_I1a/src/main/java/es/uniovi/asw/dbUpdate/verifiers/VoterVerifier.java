@@ -17,6 +17,9 @@ public class VoterVerifier {
 		else if(voter.getNif() == null || voter.getNif().equals("")){
 			return false;
 		}
+		else if(!voter.isHasVoted()) {
+			return false;
+		}
 
 		return true;
 	}
