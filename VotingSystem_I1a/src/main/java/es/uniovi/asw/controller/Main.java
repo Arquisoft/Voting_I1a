@@ -16,14 +16,10 @@ public class Main {
 
   private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-
-    @Autowired VoteRepository voteRepository;
-    @Autowired VoterRepository voterRepository;
-
   @RequestMapping("/")
   public ModelAndView landing(Model model) {
     LOG.info("Landing page access");
-    return new ModelAndView("landing");
+    return new ModelAndView("index");
   }
   
 }

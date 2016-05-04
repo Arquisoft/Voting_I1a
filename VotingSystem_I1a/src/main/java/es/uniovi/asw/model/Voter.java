@@ -20,9 +20,7 @@ public class Voter {
 	private boolean hasVoted; //boolean to store if the person has already voted or not
 	
 	
-	public Voter(){
-		
-	}
+	public Voter() {}
 
 	public Voter(Long id, String name, String email, String nif,
 			String password, boolean hasVoted) {
