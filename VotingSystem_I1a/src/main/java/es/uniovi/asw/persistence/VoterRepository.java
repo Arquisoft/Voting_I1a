@@ -9,7 +9,6 @@ import es.uniovi.asw.model.Voter;
  */
 public interface VoterRepository extends CrudRepository<Voter, Long> {
 
-    Voter findByNif(Long nif);
 
-    void updateHasVoted(String nif);
+
 }

@@ -13,7 +13,8 @@ import es.uniovi.asw.model.Vote;
 import es.uniovi.asw.model.Voter;
 
 public class Database {
-	
+
+	/*
 	public boolean insertVote(Vote vote) throws SQLException, InvalidParameterException {
 
 		//DriverManager = "org.hsqldb.jdbcDriver";
@@ -47,7 +48,7 @@ public class Database {
 		}
 		
 		return false;
-	}
+	}*/
 
 
 	public Voter findVoter(String nif) throws SQLException{

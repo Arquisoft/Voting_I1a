@@ -8,6 +8,4 @@ import es.uniovi.asw.model.Vote;
  */
 public interface VoteRepository extends CrudRepository<Vote, Long> {
 
-    void addVote(Vote vote);
-
 }

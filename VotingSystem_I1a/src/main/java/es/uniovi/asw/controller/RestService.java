@@ -1,6 +1,7 @@
 package es.uniovi.asw.controller;
 
-import es.uniovi.asw.persistence.Voting;
+import es.uniovi.asw.Voting.Voting;
+import es.uniovi.asw.model.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +31,9 @@ public class RestService {
         return array;
     }
 
-    /*
-    @RequestMapping("/voting/vote")
-    public void votes(@RequestParam(value="option", defaultValue=new Vote()) String opt) {
 
-    }*/
+    @RequestMapping("/voting/vote")
+    public Vote vote(@RequestParam(value="option", defaultValue = "Trump") String option, @RequestParam(value="id", defaultValue = "0") Long id) {
+        return voteService.vote(option, id);
+    }
 }

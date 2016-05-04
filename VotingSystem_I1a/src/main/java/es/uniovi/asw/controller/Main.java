@@ -1,7 +1,10 @@
-/*package es.uniovi.asw.controller;
+package es.uniovi.asw.controller;
 
+import es.uniovi.asw.persistence.VoteRepository;
+import es.uniovi.asw.persistence.VoterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +16,14 @@ public class Main {
 
   private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
+
+    @Autowired VoteRepository voteRepository;
+    @Autowired VoterRepository voterRepository;
+
   @RequestMapping("/")
   public ModelAndView landing(Model model) {
     LOG.info("Landing page access");
     return new ModelAndView("landing");
   }
   
-}*/
+}

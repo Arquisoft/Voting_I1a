@@ -5,11 +5,11 @@ import es.uniovi.asw.model.Vote;
 
 public class VoteVerifier {
 
-	public static boolean check(Vote vote) {
+	public static boolean check(String vote) {
 
 		for(Option val : Option.values())
 		{
-			if(vote.getOption().equals(val))
+			if(vote.equals(val.toString()))
 			{
 				return true;
 			}

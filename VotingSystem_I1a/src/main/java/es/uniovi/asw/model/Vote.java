@@ -17,6 +17,11 @@ public class Vote {
 
 	private int pollingStationCode;
 
+	public Vote()
+	{
+
+	}
+
 	public Vote(Long id, Option option){
 		this.id = id;
 		this.option = option;
